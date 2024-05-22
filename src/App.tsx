@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Layout } from "antd";
+import Sider from "antd/es/layout/Sider";
+import { SideMenu } from "./component/SideMenu";
+import { useState } from "react";
 
 function App() {
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <Layout>
+        <Sider
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            position: "fixed",
+          }}
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
         >
-          Learn React
-        </a>
-      </header>
+          <SideMenu theme="dark" defaultSelectedKeys={["fo-dashboard"]} />
+        </Sider>
+      </Layout>
     </div>
   );
 }

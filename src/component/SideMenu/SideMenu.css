@@ -1,0 +1,14 @@
+.ant-menu .ant-menu-item-group-title {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ant-menu{
+  padding: 10px;
+  font-size: 14px;
+}
