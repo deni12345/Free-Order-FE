@@ -1,26 +1,29 @@
-import { Layout } from "antd";
-import Sider from "antd/es/layout/Sider";
+import "./App.css";
+import { Breadcrumb, Layout } from "antd";
 import { SideMenu } from "./component/SideMenu";
-import { useState } from "react";
+import { Content, Footer, Header } from "antd/es/layout/layout";
 
 function App() {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
-
   return (
     <div>
       <Layout>
-        <Sider
-          style={{
-            overflow: "auto",
-            height: "100vh",
-            position: "fixed",
-          }}
-          collapsible
-          collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
-        >
-          <SideMenu theme="dark" defaultSelectedKeys={["fo-dashboard"]} />
-        </Sider>
+        <SideMenu />
+        <Layout>
+          <Content style={{ margin: "0 16px" }}>
+            <Breadcrumb style={{ margin: "16px 0" }}>
+              <Breadcrumb.Item>User</Breadcrumb.Item>
+              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            </Breadcrumb>
+            <div
+              style={{
+                padding: 24,
+                minHeight: 360,
+              }}
+            >
+              Bill is a cat.
+            </div>
+          </Content>
+        </Layout>
       </Layout>
     </div>
   );
