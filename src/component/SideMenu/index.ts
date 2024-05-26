@@ -1,0 +1,1 @@
+export { SideMenu, type MenuProps } from "./SideMenu"
