@@ -1,27 +1,25 @@
 import "./App.css";
-import { Breadcrumb, Layout } from "antd";
+import { Breadcrumb, Flex, Layout } from "antd";
 import { SideMenu } from "./component/SideMenu";
-import { Content, Footer, Header } from "antd/es/layout/layout";
+import { Content, Header } from "antd/es/layout/layout";
+import { AnalyticGroup } from "./component/AnalyticGroup";
+import { DetailGroup } from "./component/SheetDetailCard/DetailGroup";
 
 function App() {
   return (
     <div>
       <Layout>
         <SideMenu />
-        <Layout>
-          <Content style={{ margin: "0 16px" }}>
+        <Layout className="layout-content">
+          <Header style={{ padding: 0 }}>
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
-            <div
-              style={{
-                padding: 24,
-                minHeight: 360,
-              }}
-            >
-              Bill is a cat.
-            </div>
+          </Header>
+          <Content>
+            <AnalyticGroup />
+            <DetailGroup />
           </Content>
         </Layout>
       </Layout>

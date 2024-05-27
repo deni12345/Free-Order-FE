@@ -25,3 +25,11 @@
   z-index:1;
   color:#e74c3c;
 }
+
+.layout-content{
+ padding: 0 1vw;
+}
+
+.ant-layout-header{
+  background: none;
+}
