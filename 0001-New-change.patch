@@ -1,0 +1,346 @@
+From 700c81cfe16465491592498be2f1ac21f2659351 Mon Sep 17 00:00:00 2001
+From: Hieu Nguyen <hieu.nguyen@nbcuni.com>
+Date: Mon, 27 May 2024 18:25:44 +0700
+Subject: [PATCH] New change
+
+---
+ package.json                                  |  1 +
+ src/App.css                                   |  8 +++++
+ src/App.tsx                                   | 22 ++++++------
+ src/component/AnalyticCard/AnalyticCard.css   | 36 +++++++++++++++++++
+ src/component/AnalyticCard/AnalyticCard.tsx   | 27 ++++++++++++++
+ src/component/AnalyticCard/index.ts           |  1 +
+ src/component/AnalyticGroup/AnalyticGroup.tsx | 13 +++++++
+ src/component/AnalyticGroup/index.ts          |  1 +
+ src/component/InfoCard/InfoCard.tsx           |  0
+ src/component/InfoCard/index.ts               |  0
+ src/component/SheetDetailCard/DetailCard.css  |  3 ++
+ src/component/SheetDetailCard/DetailCard.tsx  | 29 +++++++++++++++
+ src/component/SheetDetailCard/DetailGroup.tsx | 11 ++++++
+ src/component/SheetDetailCard/index.ts        |  1 +
+ src/index.tsx                                 | 12 +++----
+ src/theme/color.ts                            |  3 ++
+ yarn.lock                                     |  5 +++
+ 17 files changed, 155 insertions(+), 18 deletions(-)
+ create mode 100644 src/component/AnalyticCard/AnalyticCard.css
+ create mode 100644 src/component/AnalyticCard/AnalyticCard.tsx
+ create mode 100644 src/component/AnalyticCard/index.ts
+ create mode 100644 src/component/AnalyticGroup/AnalyticGroup.tsx
+ create mode 100644 src/component/AnalyticGroup/index.ts
+ delete mode 100644 src/component/InfoCard/InfoCard.tsx
+ delete mode 100644 src/component/InfoCard/index.ts
+ create mode 100644 src/component/SheetDetailCard/DetailCard.css
+ create mode 100644 src/component/SheetDetailCard/DetailCard.tsx
+ create mode 100644 src/component/SheetDetailCard/DetailGroup.tsx
+ create mode 100644 src/component/SheetDetailCard/index.ts
+ create mode 100644 src/theme/color.ts
+
+diff --git a/package.json b/package.json
+index 8e0b10f..f13bf8b 100644
+--- a/package.json
++++ b/package.json
+@@ -13,6 +13,7 @@
+     "antd": "^5.17.3",
+     "react": "^18.3.1",
+     "react-dom": "^18.3.1",
++    "react-icons": "^5.2.1",
+     "react-scripts": "5.0.1",
+     "typescript": "^4.9.5",
+     "web-vitals": "^2.1.4"
+diff --git a/src/App.css b/src/App.css
+index 03e0e74..d405a37 100644
+--- a/src/App.css
++++ b/src/App.css
+@@ -25,3 +25,11 @@
+   z-index:1;
+   color:#e74c3c;
+ }
++
++.layout-content{
++ padding: 0 1vw;
++}
++
++.ant-layout-header{
++  background: none;
++}
+\ No newline at end of file
+diff --git a/src/App.tsx b/src/App.tsx
+index 45dc490..6aa5895 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,27 +1,25 @@
+ import "./App.css";
+-import { Breadcrumb, Layout } from "antd";
++import { Breadcrumb, Flex, Layout } from "antd";
+ import { SideMenu } from "./component/SideMenu";
+-import { Content, Footer, Header } from "antd/es/layout/layout";
++import { Content, Header } from "antd/es/layout/layout";
++import { AnalyticGroup } from "./component/AnalyticGroup";
++import { DetailGroup } from "./component/SheetDetailCard/DetailGroup";
+ 
+ function App() {
+   return (
+     <div>
+       <Layout>
+         <SideMenu />
+-        <Layout>
+-          <Content style={{ margin: "0 16px" }}>
++        <Layout className="layout-content">
++          <Header style={{ padding: 0 }}>
+             <Breadcrumb style={{ margin: "16px 0" }}>
+               <Breadcrumb.Item>User</Breadcrumb.Item>
+               <Breadcrumb.Item>Bill</Breadcrumb.Item>
+             </Breadcrumb>
+-            <div
+-              style={{
+-                padding: 24,
+-                minHeight: 360,
+-              }}
+-            >
+-              Bill is a cat.
+-            </div>
++          </Header>
++          <Content>
++            <AnalyticGroup />
++            <DetailGroup />
+           </Content>
+         </Layout>
+       </Layout>
+diff --git a/src/component/AnalyticCard/AnalyticCard.css b/src/component/AnalyticCard/AnalyticCard.css
+new file mode 100644
+index 0000000..28a384f
+--- /dev/null
++++ b/src/component/AnalyticCard/AnalyticCard.css
+@@ -0,0 +1,36 @@
++.ant-card-body{
++  height: 100%;
++}
++
++.analytic-text{
++ font-weight: bold;
++ 
++}
++
++.analytic-flex-wrapper{
++  height: 100%;
++}
++
++.analytic-flex-icon-wrapper{
++  background-color: #4FD1C5;
++  justify-content: center;
++  align-items: center;
++  border-radius: 25%;
++  height: 100%;
++  flex: 0.17;
++}
++
++.analytic-flex-icon-wrapper svg{
++  width: 50%;
++  height: 50%;
++  stroke: #FFF;
++  fill: #FFF;
++}
++
++.analytic-flex-icon-wrapper svg rect{
++  fill: #FFF;
++}
++
++.analytic-flex-icon-wrapper svg path:last-child{
++  fill: #4FD1C5;
++}
+\ No newline at end of file
+diff --git a/src/component/AnalyticCard/AnalyticCard.tsx b/src/component/AnalyticCard/AnalyticCard.tsx
+new file mode 100644
+index 0000000..6ae29e0
+--- /dev/null
++++ b/src/component/AnalyticCard/AnalyticCard.tsx
+@@ -0,0 +1,27 @@
++import "./AnalyticCard.css";
++import { Card, Flex, Typography } from "antd";
++import { IoWalletOutline } from "react-icons/io5";
++
++const { Text } = Typography;
++
++export const AnalyticCard = () => {
++  return (
++    <Card hoverable style={{ flex: 1 }}>
++      <Flex
++        justify="space-between"
++        align="center"
++        className="analytic-flex-wrapper"
++      >
++        <Flex vertical>
++          <Text className="analytic-text" type="secondary">
++            Today's Money
++          </Text>
++          <Text className="analytic-text">$53,000</Text>
++        </Flex>
++        <Flex className="analytic-flex-icon-wrapper">
++          <IoWalletOutline />
++        </Flex>
++      </Flex>
++    </Card>
++  );
++};
+diff --git a/src/component/AnalyticCard/index.ts b/src/component/AnalyticCard/index.ts
+new file mode 100644
+index 0000000..57832e7
+--- /dev/null
++++ b/src/component/AnalyticCard/index.ts
+@@ -0,0 +1 @@
++export { AnalyticCard } from "./AnalyticCard"
+\ No newline at end of file
+diff --git a/src/component/AnalyticGroup/AnalyticGroup.tsx b/src/component/AnalyticGroup/AnalyticGroup.tsx
+new file mode 100644
+index 0000000..26a23b5
+--- /dev/null
++++ b/src/component/AnalyticGroup/AnalyticGroup.tsx
+@@ -0,0 +1,13 @@
++import { Flex } from "antd";
++import { AnalyticCard } from "../AnalyticCard";
++
++export const AnalyticGroup = () => {
++  return (
++    <Flex gap={"1vw"}>
++      <AnalyticCard />
++      <AnalyticCard />
++      <AnalyticCard />
++      <AnalyticCard />
++    </Flex>
++  );
++};
+diff --git a/src/component/AnalyticGroup/index.ts b/src/component/AnalyticGroup/index.ts
+new file mode 100644
+index 0000000..5db8c16
+--- /dev/null
++++ b/src/component/AnalyticGroup/index.ts
+@@ -0,0 +1 @@
++export { AnalyticGroup } from "./AnalyticGroup"
+\ No newline at end of file
+diff --git a/src/component/InfoCard/InfoCard.tsx b/src/component/InfoCard/InfoCard.tsx
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/src/component/InfoCard/index.ts b/src/component/InfoCard/index.ts
+deleted file mode 100644
+index e69de29..0000000
+diff --git a/src/component/SheetDetailCard/DetailCard.css b/src/component/SheetDetailCard/DetailCard.css
+new file mode 100644
+index 0000000..8a2f973
+--- /dev/null
++++ b/src/component/SheetDetailCard/DetailCard.css
+@@ -0,0 +1,3 @@
++.ant-card-body{
++  padding: 10px 10px;
++}
+\ No newline at end of file
+diff --git a/src/component/SheetDetailCard/DetailCard.tsx b/src/component/SheetDetailCard/DetailCard.tsx
+new file mode 100644
+index 0000000..c3dc83d
+--- /dev/null
++++ b/src/component/SheetDetailCard/DetailCard.tsx
+@@ -0,0 +1,29 @@
++import "./DetailCard.css";
++import { Button, Card, Flex, Typography } from "antd";
++import { FaFileExcel } from "react-icons/fa";
++
++const { Text, Title } = Typography;
++export type DetailCardProps = {
++  style: React.CSSProperties | {};
++};
++export const DetailCard = ({ style }: DetailCardProps) => {
++  return (
++    <Card hoverable style={style}>
++      <Flex justify="space-between" className="analytic-flex-wrapper">
++        <Flex vertical>
++          <Title style={{ fontWeight: "bold" }} level={4}>
++            Purity UI Dashboard
++          </Title>
++          <Text className="analytic-text" type="secondary">
++            From colors, cards, typography to complex elements, you will find
++            the full documentation.
++          </Text>
++          <Button>Read more</Button>
++        </Flex>
++        <Flex className="analytic-flex-icon-wrapper">
++          <FaFileExcel />
++        </Flex>
++      </Flex>
++    </Card>
++  );
++};
+diff --git a/src/component/SheetDetailCard/DetailGroup.tsx b/src/component/SheetDetailCard/DetailGroup.tsx
+new file mode 100644
+index 0000000..682f275
+--- /dev/null
++++ b/src/component/SheetDetailCard/DetailGroup.tsx
+@@ -0,0 +1,11 @@
++import { Flex } from "antd";
++import { DetailCard } from ".";
++
++export const DetailGroup = () => {
++  return (
++    <Flex style={{ margin: "20px 0px" }} gap={"1vw"}>
++      <DetailCard style={{ flex: 0.57, height: "300px" }} />
++      <DetailCard style={{ flex: 0.43 }} />
++    </Flex>
++  );
++};
+diff --git a/src/component/SheetDetailCard/index.ts b/src/component/SheetDetailCard/index.ts
+new file mode 100644
+index 0000000..878e179
+--- /dev/null
++++ b/src/component/SheetDetailCard/index.ts
+@@ -0,0 +1 @@
++export { DetailCard } from "./DetailCard"
+\ No newline at end of file
+diff --git a/src/index.tsx b/src/index.tsx
+index fa3ec10..cbe295d 100644
+--- a/src/index.tsx
++++ b/src/index.tsx
+@@ -1,11 +1,11 @@
+-import React from 'react';
+-import ReactDOM from 'react-dom/client';
+-import './index.css';
+-import App from './App';
+-import reportWebVitals from './reportWebVitals';
++import React from "react";
++import ReactDOM from "react-dom/client";
++import "./index.css";
++import App from "./App";
++import reportWebVitals from "./reportWebVitals";
+ 
+ const root = ReactDOM.createRoot(
+-  document.getElementById('root') as HTMLElement
++  document.getElementById("root") as HTMLElement
+ );
+ root.render(
+   <React.StrictMode>
+diff --git a/src/theme/color.ts b/src/theme/color.ts
+new file mode 100644
+index 0000000..06cfa9a
+--- /dev/null
++++ b/src/theme/color.ts
+@@ -0,0 +1,3 @@
++export const COLORS = {
++  PRIMARY_COLOR: "#4FD1C5"
++}
+\ No newline at end of file
+diff --git a/yarn.lock b/yarn.lock
+index f4948c2..5b1e826 100644
+--- a/yarn.lock
++++ b/yarn.lock
+@@ -8502,6 +8502,11 @@ react-error-overlay@^6.0.11:
+   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.11.tgz#92835de5841c5cf08ba00ddd2d677b6d17ff9adb"
+   integrity sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg==
+ 
++react-icons@^5.2.1:
++  version "5.2.1"
++  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.2.1.tgz#28c2040917b2a2eda639b0f797bff1888e018e4a"
++  integrity sha512-zdbW5GstTzXaVKvGSyTaBalt7HSfuK5ovrzlpyiWHAFXndXTdd/1hdDHI4xBM1Mn7YriT6aqESucFl9kEXzrdw==
++
+ react-is@^16.13.1:
+   version "16.13.1"
+   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+-- 
+2.33.0.windows.2
+

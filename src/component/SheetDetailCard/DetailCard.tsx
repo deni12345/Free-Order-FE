@@ -9,18 +9,18 @@ export type DetailCardProps = {
 export const DetailCard = ({ style }: DetailCardProps) => {
   return (
     <Card hoverable style={style}>
-      <Flex justify="space-between" className="analytic-flex-wrapper">
+      <Flex className="analytic-flex-wrapper" justify="space-between">
         <Flex vertical>
-          <Title style={{ fontWeight: "bold" }} level={4}>
+          <Title className="detail-title" level={4}>
             Purity UI Dashboard
           </Title>
-          <Text className="analytic-text" type="secondary">
+          <Text className="detail-text" type="secondary">
             From colors, cards, typography to complex elements, you will find
             the full documentation.
           </Text>
           <Button>Read more</Button>
         </Flex>
-        <Flex className="analytic-flex-icon-wrapper">
+        <Flex className="detail-flex-icon-wrapper">
           <FaFileExcel />
         </Flex>
       </Flex>
