@@ -1,0 +1,16 @@
+.ant-card-body{
+  padding: 15px 15px !important;
+}
+
+.detail-text{
+  flex-grow: 1;
+}
+
+.detail-title{
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+button{ 
+  width: fit-content;
+}

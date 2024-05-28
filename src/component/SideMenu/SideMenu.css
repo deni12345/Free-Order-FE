@@ -1,14 +1,30 @@
+.ant-menu-item {
+  color: #253342 !important;
+  font-weight: 500;
+}
+
+.ant-menu-item-icon{
+  border-radius: inherit;
+  padding: 5px;
+  width: 20%;
+  height: auto;
+  fill: #fff;
+  background-color: #4FD1C5;
+}
+
 .ant-menu .ant-menu-item-group-title {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #253342;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.ant-menu{
+.ant-menu {
   padding: 10px;
   font-size: 14px;
+  color: #253342 !important;
+  background-color: transparent;
 }

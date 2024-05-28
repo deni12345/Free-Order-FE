@@ -35,7 +35,6 @@ export const SideMenu = ({ defaultSelectedKeys, theme }: MenuProps) => {
           minWidth: "auto",
           width: "auto",
           margin: "24px 10px",
-          backgroundColor: "#E0E1E2",
         }}
       />
       <Menu

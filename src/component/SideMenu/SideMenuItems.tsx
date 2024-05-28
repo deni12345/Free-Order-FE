@@ -1,28 +1,26 @@
 import { MenuProps } from "antd";
-import {
-  HomeOutlined,
-  ContainerOutlined,
-  WalletOutlined,
-  UserOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { AiFillHome   } from "react-icons/ai";
+import { BiSolidSpreadsheet } from "react-icons/bi";
+import { FaWallet } from "react-icons/fa6";
+import { IoPersonSharp } from "react-icons/io5";
+import { FaSignOutAlt } from "react-icons/fa";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
 export const items: MenuItem[] = [
   {
     key: "fo-dashboard",
-    icon: <HomeOutlined />,
+    icon: <AiFillHome  />,
     label: "DashBoard",
   },
   {
     key: "fo-table",
-    icon: <ContainerOutlined />,
+    icon: <BiSolidSpreadsheet />,
     label: "Table",
   },
   {
     key: "fo-",
-    icon: <WalletOutlined />,
+    icon: <FaWallet />,
     label: "Wallet",
   },
   {
@@ -32,12 +30,12 @@ export const items: MenuItem[] = [
     children: [
       {
         key: 5,
-        icon: <UserOutlined />,
+        icon: <IoPersonSharp />,
         label: "Profile",
       },
       {
         key: 6,
-        icon: <LogoutOutlined />,
+        icon: <FaSignOutAlt />,
         label: "Sign Out",
       },
     ],
