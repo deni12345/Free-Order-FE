@@ -3,6 +3,7 @@ import { Divider, Menu, MenuTheme } from "antd";
 import { items } from "./SideMenuItems";
 import Sider from "antd/es/layout/Sider";
 import { useState } from "react";
+import { FaSignOutAlt } from "react-icons/fa";
 
 export type MenuProps = {
   defaultSelectedKeys?: string[] | undefined;
@@ -30,17 +31,10 @@ export const SideMenu = ({ defaultSelectedKeys, theme }: MenuProps) => {
           <h3>Lorem</h3>
         </a>
       </div>
-      <Divider
-        style={{
-          minWidth: "auto",
-          width: "auto",
-          margin: "24px 10px",
-          backgroundColor: "#E0E1E2",
-        }}
-      />
       <Menu
         defaultSelectedKeys={["fo-dashboard"]}
-        theme="dark"
+        inlineIndent={10}
+        theme="light"
         mode="inline"
         items={items}
       ></Menu>

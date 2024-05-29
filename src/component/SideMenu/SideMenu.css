@@ -1,14 +1,36 @@
+.ant-menu-item {
+  font-weight: 500;
+}
+
+.ant-menu-item-icon > svg{
+  border-radius: inherit;
+  padding: 5px; 
+  width: fit-content;
+  height: fit-content;
+  fill: #fff;
+  background-color: #4FD1C5;
+}
+
 .ant-menu .ant-menu-item-group-title {
   padding-top: 8px;
   padding-bottom: 8px;
-  padding-left: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #253342;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.ant-menu{
+.ant-menu {
   padding: 10px;
   font-size: 14px;
 }
+
+:where(.css-dev-only-do-not-override-17seli4) .ant-menu-inline-collapsed >.ant-menu-item {
+  padding-inline: 13px;
+  padding-block: 7px;
+}
+
+:where(.css-dev-only-do-not-override-17seli4) .ant-menu-inline-collapsed >.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item {
+  padding-inline: 13px;
+  padding-block: 7px;
+}  
