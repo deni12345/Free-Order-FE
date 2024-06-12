@@ -1,16 +1,35 @@
-.ant-card-body{
+.ant-card-body {
   padding: 15px 15px !important;
 }
 
-.detail-text{
+.detail-text {
   flex-grow: 1;
 }
 
-.detail-title{
+.detail-title {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-button{ 
+.detail-flex-icon-wrapper {
+  justify-content: center;
+  align-items: center;
+  background-color: #4fd1c5;
+  font-size: xx-large;
+  border-radius: 8px;
+  gap: 5px;
+}
+
+.detail-flex-icon-wrapper > svg {
+  fill: #fff;
+}
+
+.detail-flex-icon-wrapper > span {
+  font-size: x-large;
+  font-weight: 500;
+  color: #fff;
+}
+
+button {
   width: fit-content;
 }

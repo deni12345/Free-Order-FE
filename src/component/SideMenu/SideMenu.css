@@ -1,9 +1,5 @@
-.ant-menu-item {
-  font-weight: 500;
-}
-
-.ant-menu-item-icon > svg{
-  border-radius: inherit;
+.ant-menu-item-icon  svg{
+  border-radius: 8px;
   padding: 5px; 
   width: fit-content;
   height: fit-content;
@@ -25,12 +21,17 @@
   font-size: 14px;
 }
 
-:where(.css-dev-only-do-not-override-17seli4) .ant-menu-inline-collapsed >.ant-menu-item {
+.ant-menu .ant-menu-item {
+  font-weight: 500;
+  transition: border-color 0.3s, background 0.3s, padding-right 0.3s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+}
+
+.ant-menu-inline-collapsed >.ant-menu-item {
   padding-inline: 13px;
   padding-block: 7px;
 }
 
-:where(.css-dev-only-do-not-override-17seli4) .ant-menu-inline-collapsed >.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item {
+.ant-menu-inline-collapsed >.ant-menu-item-group>.ant-menu-item-group-list>.ant-menu-item {
   padding-inline: 13px;
   padding-block: 7px;
 }  

@@ -9,8 +9,8 @@ export type DetailCardProps = {
 export const DetailCard = ({ style }: DetailCardProps) => {
   return (
     <Card hoverable style={style}>
-      <Flex className="analytic-flex-wrapper" justify="space-between">
-        <Flex vertical>
+      <Flex className="analytic-flex-wrapper" gap={10}>
+        <Flex vertical flex={0.65}>
           <Title className="detail-title" level={4}>
             Purity UI Dashboard
           </Title>
@@ -20,8 +20,9 @@ export const DetailCard = ({ style }: DetailCardProps) => {
           </Text>
           <Button>Read more</Button>
         </Flex>
-        <Flex className="detail-flex-icon-wrapper">
+        <Flex className="detail-flex-icon-wrapper" flex={0.35}>
           <FaFileExcel />
+          <Text>Detail Sheet</Text>
         </Flex>
       </Flex>
     </Card>

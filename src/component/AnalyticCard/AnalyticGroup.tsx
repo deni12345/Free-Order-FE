@@ -1,5 +1,5 @@
 import { Flex } from "antd";
-import { AnalyticCard } from "../AnalyticCard";
+import { AnalyticCard } from ".";
 
 export const AnalyticGroup = () => {
   return (

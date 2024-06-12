@@ -1,9 +1,8 @@
 import "./SideMenu.css";
-import { Divider, Menu, MenuTheme } from "antd";
+import { Menu, MenuTheme } from "antd";
 import { items } from "./SideMenuItems";
 import Sider from "antd/es/layout/Sider";
 import { useState } from "react";
-import { FaSignOutAlt } from "react-icons/fa";
 
 export type MenuProps = {
   defaultSelectedKeys?: string[] | undefined;
@@ -24,7 +23,7 @@ export const SideMenu = ({ defaultSelectedKeys, theme }: MenuProps) => {
       onCollapse={(value) => setCollapsed(value)}
     >
       <div className="logo-holder logo-9">
-        <a href="">
+        <a>
           <span>
             <i className="fas fa-bell"></i>
           </span>
