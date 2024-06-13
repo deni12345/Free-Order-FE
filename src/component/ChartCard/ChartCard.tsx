@@ -7,7 +7,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { Card, Flex } from "antd";
+import { Card } from "antd";
 
 export type ChartData = {
   name: string;
@@ -22,8 +22,8 @@ type ChartCardProps = {
 
 export const ChartCard = ({ data }: ChartCardProps) => {
   return (
-    <Card hoverable>
-      <ResponsiveContainer width="100%" height="50%" minHeight={300}>
+    <Card hoverable style={{ height: "50vh", width: "100%" }}>
+      <ResponsiveContainer width="100%">
         <AreaChart
           data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
