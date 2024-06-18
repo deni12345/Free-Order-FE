@@ -1,14 +1,19 @@
 import "./DetailCard.css";
 import { Button, Card, Flex, Typography } from "antd";
+import { ReactNode } from "react";
 import { FaFileExcel } from "react-icons/fa";
 
 const { Text, Title } = Typography;
 export type DetailCardProps = {
   style: React.CSSProperties | {};
+  classNames?: string;
 };
-export const DetailCard = ({ style }: DetailCardProps) => {
+export const DetailCard = ({
+  style,
+  classNames: className,
+}: DetailCardProps) => {
   return (
-    <Card hoverable style={style}>
+    <Card hoverable style={style} className={className}>
       <Flex className="analytic-flex-wrapper" gap={10}>
         <Flex vertical flex={0.65}>
           <Title className="detail-title" level={4}>
