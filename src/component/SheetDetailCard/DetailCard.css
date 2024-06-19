@@ -33,3 +33,20 @@
 button {
   width: fit-content;
 }
+
+.image-card {
+  background: url("../../assets/cozy_coffee.jpg"),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4) 1%,
+      rgba(0, 0, 0, 0.4) 4%,
+      rgba(0, 0, 0, 0.6) 35%,
+      rgba(0, 0, 0, 0) 60%
+    );
+  background-blend-mode: color;
+  background-size: cover;
+}
+
+.image-card * {
+  color: #fff !important;
+}
