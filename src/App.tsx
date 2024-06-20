@@ -1,16 +1,12 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "./view/Home";
-import { Login } from "./view/Login";
+import AuthProvider from "./provider/AuthProvider";
+import Routes from "./route";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" Component={Home} />
-        <Route path="/login" Component={Login} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <Routes />
+    </AuthProvider>
   );
 }
 
