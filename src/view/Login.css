@@ -1,13 +1,25 @@
 .login-form {
-    max-width: 300px;
-  }
-  .login-form-forgot {
-    float: right;
-  }
-  .ant-col-rtl .login-form-forgot {
-    float: left;
-  }
-  .login-form-button {
-    width: 100%;
-  }
-  
+ min-width: 18vw;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+
+.login-form-button {
+  width: 100%;
+  min-height: 40px;
+}
+
+.form-header, .form-footer{
+  margin:15px 0;
+}
+
+.form-footer{
+  display: block;
+  text-align: center;
+}

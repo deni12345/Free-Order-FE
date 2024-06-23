@@ -5,6 +5,7 @@ export const ProtectedRoute = () => {
   const { token } = useAuth();
 
   if (!token) {
+    console.log("test ", token);
     //if token not existed then return to login page
     return <Navigate to="/login" />;
   }

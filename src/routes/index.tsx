@@ -5,15 +5,6 @@ import { Home } from "../view/Home";
 import { Login } from "../view/Login";
 
 const Routes = () => {
-  const { token } = useAuth();
-
-  const routesForPublic = [
-    {
-      path: "/about-us",
-      element: <div>About Us</div>,
-    },
-  ];
-
   const routesForAuthenOnly = [
     {
       path: "/",
@@ -21,6 +12,10 @@ const Routes = () => {
       children: [
         {
           path: "/home",
+          element: <Home />,
+        },
+        {
+          path: "/",
           element: <Home />,
         },
       ],
@@ -33,4 +28,13 @@ const Routes = () => {
       element: <Login />,
     },
   ];
+
+  const router = createBrowserRouter([
+    ...routesForAuthenOnly,
+    ...routesForNonAuthenOnly,
+  ]);
+
+  return <RouterProvider router={router}></RouterProvider>;
 };
+
+export default Routes;

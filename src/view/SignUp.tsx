@@ -4,7 +4,7 @@ import { Background } from "../assets/Background/Background";
 import { useAuth } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+export const SignUp = () => {
   const { setNewToken } = useAuth();
   const navigate = useNavigate();
   const { Title, Text } = Typography;
