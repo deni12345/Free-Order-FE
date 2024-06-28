@@ -1,6 +1,5 @@
 import axios from "axios";
 import {
-  Children,
   createContext,
   ReactNode,
   useContext,
@@ -8,6 +7,11 @@ import {
   useMemo,
   useState,
 } from "react";
+
+const AuthContext = createContext<AuthContextType>({
+  token: "",
+  setNewToken: (newToken: string) => {},
+});
 
 type AuthContextType = {
   token: string | null;
@@ -17,8 +21,6 @@ type AuthContextType = {
 type AuthProviderProp = {
   children: ReactNode;
 };
-
-const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 const AuthProvider = ({ children }: AuthProviderProp) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -39,8 +41,8 @@ const AuthProvider = ({ children }: AuthProviderProp) => {
 
   const contextValue = useMemo<AuthContextType>(
     () => ({
-      token,
-      setNewToken,
+      token: token,
+      setNewToken: setNewToken,
     }),
     [token]
   );

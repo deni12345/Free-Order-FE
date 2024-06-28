@@ -1,6 +1,6 @@
 import "./SideMenu.css";
-import { Button, Menu, MenuTheme } from "antd";
-import { items } from "./SideMenuItems";
+import { Menu, MenuTheme } from "antd";
+import { SideMenuItems } from "./SideMenuItems";
 import Sider from "antd/es/layout/Sider";
 import { useState } from "react";
 
@@ -11,6 +11,7 @@ export type MenuProps = {
 
 export const SideMenu = ({ defaultSelectedKeys, theme }: MenuProps) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
+  const items = SideMenuItems();
 
   return (
     <Sider
@@ -18,15 +19,10 @@ export const SideMenu = ({ defaultSelectedKeys, theme }: MenuProps) => {
         overflow: "auto",
         height: "100vh",
       }}
-      // collapsible
+      collapsible
       collapsed={collapsed}
-      //onCollapse={(value) => setCollapsed(value)}
+      onCollapse={(value) => setCollapsed(value)}
     >
-      <Button
-        onClick={() => {
-          setCollapsed(!collapsed);
-        }}
-      ></Button>
       <Menu
         defaultSelectedKeys={["fo-dashboard"]}
         inlineIndent={10}

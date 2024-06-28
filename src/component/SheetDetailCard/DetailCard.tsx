@@ -1,6 +1,5 @@
 import "./DetailCard.css";
 import { Button, Card, Flex, Typography } from "antd";
-import { ReactNode } from "react";
 import { FaFileExcel } from "react-icons/fa";
 
 const { Text, Title } = Typography;
