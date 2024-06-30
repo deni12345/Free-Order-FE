@@ -1,7 +1,11 @@
 import "./Table.css";
-import { Card, Table, TableProps, Typography } from "antd";
+import { Button, Card, Table } from "antd";
+import { Title } from "./util";
+import { SheetItem } from "./SheetTable";
+import { useEffect } from "react";
+import { columns, orderData } from "./mockd_data";
 
-type DataType = {
+export type OrderItem = {
   key: string;
   name: string;
   order: string;
@@ -11,88 +15,27 @@ type DataType = {
   cash: number;
 };
 
-const columns: TableProps<DataType>["columns"] = [
-  {
-    title: "Name",
-    dataIndex: "name",
-  },
+type OrderTableProp = {
+  selectedSheet: SheetItem;
+  size: number;
+};
 
-  {
-    title: "Order",
-    dataIndex: "order",
-  },
-  {
-    title: "Size",
-    dataIndex: "size",
-  },
-  {
-    title: "Amount",
-    dataIndex: "amount",
-  },
-  {
-    title: "Note",
-    dataIndex: "note",
-  },
-  {
-    title: "Amount",
-    dataIndex: "amount",
-  },
-  {
-    title: "Cash",
-    dataIndex: "cash",
-  },
-];
-
-const orderData: DataType[] = [
-  {
-    key: "1",
-    name: "test-1",
-    order: "orange juice",
-    size: "M",
-    amount: 1,
-    note: ["nothing"],
-    cash: 10000,
-  },
-  {
-    key: "2",
-    name: "test-1",
-    order: "orange juice",
-    size: "M",
-    amount: 1,
-    note: ["nothing"],
-    cash: 10000,
-  },
-  {
-    key: "3",
-    name: "test-1",
-    order: "orange juice",
-    size: "M",
-    amount: 1,
-    note: ["nothing"],
-    cash: 10000,
-  },
-  {
-    key: "4",
-    name: "test-1",
-    order: "orange juice",
-    size: "M",
-    amount: 1,
-    note: ["nothing"],
-    cash: 10000,
-  },
-];
-
-const { Title } = Typography;
-
-export const OrderTable = () => {
-  const size = 5;
+var data: OrderItem[];
+export const OrderTable = ({ selectedSheet, size }: OrderTableProp) => {
+  useEffect(() => {
+    data = orderData;
+    return () => {
+      data = [];
+    };
+  }, [selectedSheet]);
 
   return (
     <Card hoverable className="card-table">
-      <Title level={3}>Drinks</Title>
+      <Title level={3}>{selectedSheet.sheetName}</Title>
+      <Button>{data?.some((v) => v.key === "1") ? "Update" : "Order"}</Button>
       <Table
         columns={columns}
-        dataSource={orderData}
+        dataSource={data}
         pagination={{
           hideOnSinglePage: true,
           total: orderData.length,

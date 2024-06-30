@@ -7,7 +7,6 @@ import { Layout } from "antd";
 export const MainLayout = () => {
   const location = useLocation();
   let paths = location.pathname.split("/").slice(1);
-  console.log("host", window.location.hostname);
   return (
     <div>
       <Layout>

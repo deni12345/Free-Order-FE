@@ -1,4 +1,5 @@
 import {
+  Navigate,
   RouteObject,
   RouterProvider,
   createBrowserRouter,
@@ -19,12 +20,14 @@ const Routes = () => {
           element: <MainLayout />,
           children: [
             {
-              index: true,
+              path: "/",
+              element: <Navigate to="/dashboard" />,
+            },
+            {
               path: "dashboard",
               element: <DashBoard />,
             },
             {
-              index: true,
               path: "dashboard/table",
               element: <TableView />,
             },

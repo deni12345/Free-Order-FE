@@ -10,7 +10,7 @@ import {
 
 const AuthContext = createContext<AuthContextType>({
   token: "",
-  setNewToken: (newToken: string) => {},
+  setNewToken: (_: string) => {},
 });
 
 type AuthContextType = {
