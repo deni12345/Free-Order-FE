@@ -71,7 +71,7 @@ export const PlaceOrderModal = ({
           ]}
         ></Card>
       ),
-      value: "card-2",
+      value: "card-3",
     },
     {
       label: (
@@ -90,7 +90,7 @@ export const PlaceOrderModal = ({
           ]}
         ></Card>
       ),
-      value: "card-2",
+      value: "card-4",
     },
     {
       label: (
@@ -109,7 +109,7 @@ export const PlaceOrderModal = ({
           ]}
         ></Card>
       ),
-      value: "card-2",
+      value: "card-5",
     },
     {
       label: (
@@ -128,7 +128,7 @@ export const PlaceOrderModal = ({
           ]}
         ></Card>
       ),
-      value: "card-2",
+      value: "card-6",
     },
     {
       label: (
@@ -147,7 +147,7 @@ export const PlaceOrderModal = ({
           ]}
         ></Card>
       ),
-      value: "card-2",
+      value: "card-7",
     },
     {
       label: (
@@ -166,7 +166,7 @@ export const PlaceOrderModal = ({
           ]}
         ></Card>
       ),
-      value: "card-2",
+      value: "card-8",
     },
   ];
 
@@ -174,16 +174,20 @@ export const PlaceOrderModal = ({
     <Modal
       title="Place Your Order"
       centered
-      width={"50%"}
+      width={"70%"}
       open={isOpenModal}
       onOk={() => setIsOpenModal(false)}
       onCancel={() => setIsOpenModal(false)}
+      styles={{ body: { height: "70vh" } }}
     >
-      <Flex flex={1}>
-        <Checkbox.Group
-          options={optionlists}
-          style={{ gap: 16 }}
-        ></Checkbox.Group>
+      <Flex style={{ height: "100%" }}>
+        <Flex flex={4} style={{ overflowY: "scroll" }}>
+          <Checkbox.Group
+            options={optionlists}
+            style={{ gap: 16 }}
+          ></Checkbox.Group>
+        </Flex>
+        <Flex flex={3}>test</Flex>
       </Flex>
     </Modal>
   );
