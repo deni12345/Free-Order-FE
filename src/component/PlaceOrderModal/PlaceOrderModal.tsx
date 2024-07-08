@@ -4,7 +4,18 @@ import {
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Card, Checkbox, CheckboxOptionType, Flex, Modal } from "antd";
+import {
+  Avatar,
+  Card,
+  Checkbox,
+  CheckboxOptionType,
+  Flex,
+  Form,
+  GetProp,
+  List,
+  Modal,
+} from "antd";
+import FormItem from "antd/es/form/FormItem";
 
 type PlaceOrderModalProp = {
   isOpenModal: boolean;
@@ -145,7 +156,7 @@ export const PlaceOrderModal = ({
             <SettingOutlined key="setting" />,
             <EllipsisOutlined key="ellipsis" />,
           ]}
-        ></Card>
+        />
       ),
       value: "card-7",
     },
@@ -164,9 +175,24 @@ export const PlaceOrderModal = ({
             <SettingOutlined key="setting" />,
             <EllipsisOutlined key="ellipsis" />,
           ]}
-        ></Card>
+        />
       ),
       value: "card-8",
+    },
+  ];
+
+  const data = [
+    {
+      title: "Ant Design Title 1",
+    },
+    {
+      title: "Ant Design Title 2",
+    },
+    {
+      title: "Ant Design Title 3",
+    },
+    {
+      title: "Ant Design Title 4",
     },
   ];
 
@@ -180,15 +206,42 @@ export const PlaceOrderModal = ({
       onCancel={() => setIsOpenModal(false)}
       styles={{ body: { height: "70vh" } }}
     >
-      <Flex style={{ height: "100%" }}>
+      <Flex style={{ height: "100%", gap: 10 }}>
         <Flex flex={4} style={{ overflowY: "scroll" }}>
           <Checkbox.Group
             options={optionlists}
-            style={{ gap: 16 }}
+            style={{ gap: 16, justifyContent: "space-around" }}
+            onChange={onCheckGroupChange}
           ></Checkbox.Group>
         </Flex>
-        <Flex flex={3}>test</Flex>
+        <Flex flex={3} vertical justify="space-around">
+          <List
+            style={{ width: "100%" }}
+            itemLayout="horizontal"
+            dataSource={data}
+            renderItem={(item, index) => (
+              <List.Item>
+                <List.Item.Meta
+                  avatar={
+                    <Avatar
+                      src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
+                    />
+                  }
+                  title={<a href="https://ant.design">{item.title}</a>}
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                />
+              </List.Item>
+            )}
+          />
+          <Card>"????"</Card>
+        </Flex>
       </Flex>
     </Modal>
   );
+};
+
+const onCheckGroupChange: GetProp<typeof Checkbox.Group, "onChange"> = (
+  checkedValues
+) => {
+  console.log("checked = ", checkedValues);
 };
