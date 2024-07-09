@@ -6,26 +6,35 @@ import {
 } from "@ant-design/icons";
 import {
   Avatar,
+  Button,
   Card,
   Checkbox,
   CheckboxOptionType,
+  Divider,
   Flex,
   Form,
   GetProp,
   List,
   Modal,
+  Typography,
 } from "antd";
-import FormItem from "antd/es/form/FormItem";
+import { useState } from "react";
 
 type PlaceOrderModalProp = {
   isOpenModal: boolean;
   setIsOpenModal: (_: boolean) => void;
 };
 
+type SelectedFood ={
+  
+}
+
 export const PlaceOrderModal = ({
   isOpenModal,
   setIsOpenModal,
 }: PlaceOrderModalProp) => {
+  const [selectedFoods, setSelectedFoods] = useState([]);
+  const { Text } = Typography;
   const optionlists: CheckboxOptionType[] = [
     {
       label: (
@@ -194,6 +203,30 @@ export const PlaceOrderModal = ({
     {
       title: "Ant Design Title 4",
     },
+    {
+      title: "Ant Design Title 1",
+    },
+    {
+      title: "Ant Design Title 2",
+    },
+    {
+      title: "Ant Design Title 3",
+    },
+    {
+      title: "Ant Design Title 4",
+    },
+    {
+      title: "Ant Design Title 1",
+    },
+    {
+      title: "Ant Design Title 2",
+    },
+    {
+      title: "Ant Design Title 3",
+    },
+    {
+      title: "Ant Design Title 4",
+    },
   ];
 
   return (
@@ -202,6 +235,7 @@ export const PlaceOrderModal = ({
       centered
       width={"70%"}
       open={isOpenModal}
+      okText={<Text style={{ color: "white" }}>Place An Order Now</Text>}
       onOk={() => setIsOpenModal(false)}
       onCancel={() => setIsOpenModal(false)}
       styles={{ body: { height: "70vh" } }}
@@ -214,11 +248,11 @@ export const PlaceOrderModal = ({
             onChange={onCheckGroupChange}
           ></Checkbox.Group>
         </Flex>
-        <Flex flex={3} vertical justify="space-around">
+        <Flex flex={3} vertical justify="space-between" gap={10}>
           <List
-            style={{ width: "100%" }}
+            style={{ width: "100%", overflowY: "scroll" }}
             itemLayout="horizontal"
-            dataSource={data}
+            dataSource={selectedFoods}
             renderItem={(item, index) => (
               <List.Item>
                 <List.Item.Meta
@@ -227,13 +261,29 @@ export const PlaceOrderModal = ({
                       src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
                     />
                   }
-                  title={<a href="https://ant.design">{item.title}</a>}
+                  title={<a href="https://ant.design">{item.}</a>}
                   description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                 />
               </List.Item>
             )}
           />
-          <Card>"????"</Card>
+          <Card hoverable>
+            <Text style={{ fontSize: "1.5rem" }}>Discount</Text>
+            <Text
+              type="secondary"
+              style={{ fontSize: "1.5rem", float: "right" }}
+            >
+              {0}
+            </Text>
+            <Divider />
+            <Text style={{ fontSize: "1.5rem" }}>Total</Text>
+            <Text
+              type="secondary"
+              style={{ fontSize: "1.5rem", float: "right" }}
+            >
+              {100000} VND
+            </Text>
+          </Card>
         </Flex>
       </Flex>
     </Modal>
