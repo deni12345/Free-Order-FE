@@ -18,22 +18,27 @@ import {
   Modal,
   Typography,
 } from "antd";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type PlaceOrderModalProp = {
   isOpenModal: boolean;
   setIsOpenModal: (_: boolean) => void;
 };
 
-type SelectedFood ={
-  
-}
+type SelectedFood = {
+  Name: string;
+  Price: number;
+  Size: string;
+  Note: string;
+};
 
 export const PlaceOrderModal = ({
   isOpenModal,
   setIsOpenModal,
 }: PlaceOrderModalProp) => {
-  const [selectedFoods, setSelectedFoods] = useState([]);
+  const [selectedFoods, setSelectedFoods] = useState<SelectedFood[]>(
+    [] as SelectedFood[]
+  );
   const { Text } = Typography;
   const optionlists: CheckboxOptionType[] = [
     {
@@ -229,6 +234,11 @@ export const PlaceOrderModal = ({
     },
   ];
 
+  const onCheckGroupChange = (checkedValues: CheckboxOptionType[]) => {
+    setSelectedFoods(checkedValues);
+    console.log("checked = ", checkedValues);
+  };
+
   return (
     <Modal
       title="Place Your Order"
@@ -241,7 +251,7 @@ export const PlaceOrderModal = ({
       styles={{ body: { height: "70vh" } }}
     >
       <Flex style={{ height: "100%", gap: 10 }}>
-        <Flex flex={4} style={{ overflowY: "scroll" }}>
+        <Flex flex={4} style={{ overflowY: "auto" }}>
           <Checkbox.Group
             options={optionlists}
             style={{ gap: 16, justifyContent: "space-around" }}
@@ -261,7 +271,7 @@ export const PlaceOrderModal = ({
                       src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
                     />
                   }
-                  title={<a href="https://ant.design">{item.}</a>}
+                  title={<a href="https://ant.design">{item.Name}</a>}
                   description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                 />
               </List.Item>
@@ -288,10 +298,4 @@ export const PlaceOrderModal = ({
       </Flex>
     </Modal>
   );
-};
-
-const onCheckGroupChange: GetProp<typeof Checkbox.Group, "onChange"> = (
-  checkedValues
-) => {
-  console.log("checked = ", checkedValues);
 };
