@@ -17,7 +17,6 @@ export const SideMenu = ({ defaultSelectedKeys, theme }: MenuProps) => {
     <Sider
       style={{
         overflow: "auto",
-        height: "100vh",
       }}
       collapsible
       collapsed={collapsed}

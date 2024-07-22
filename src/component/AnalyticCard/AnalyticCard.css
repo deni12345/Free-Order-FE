@@ -1,18 +1,13 @@
-.ant-card-body{
+.analytic-text {
+  font-weight: bold;
+}
+
+.analytic-flex-wrapper {
   height: 100%;
 }
 
-.analytic-text{
- font-weight: bold;
- 
-}
-
-.analytic-flex-wrapper{
-  height: 100%;
-}
-
-.analytic-flex-icon-wrapper{
-  background-color: #4FD1C5;
+.analytic-flex-icon-wrapper {
+  background-color: #4fd1c5;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
@@ -20,16 +15,16 @@
   flex: 0.17;
 }
 
-.analytic-flex-icon-wrapper svg{
+.analytic-flex-icon-wrapper svg {
   width: 50%;
   height: 50%;
-  stroke: #FFF;
+  stroke: #fff;
 }
 
-.analytic-flex-icon-wrapper svg rect{
-  fill: #FFF;
+.analytic-flex-icon-wrapper svg rect {
+  fill: #fff;
 }
 
-.analytic-flex-icon-wrapper svg path:last-child{
-  fill: #4FD1C5;
+.analytic-flex-icon-wrapper svg path:last-child {
+  fill: #4fd1c5;
 }

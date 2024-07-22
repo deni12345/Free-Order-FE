@@ -9,7 +9,7 @@ export const TableView = () => {
   );
 
   return (
-    <Flex vertical style={{ height: "100%" }} gap={"4%"}>
+    <Flex vertical gap={16}>
       <SheetTable setSelectedSheet={setSelectedSheet} size={5} />
       <OrderTable selectedSheet={selectedSheet} size={5} />
     </Flex>

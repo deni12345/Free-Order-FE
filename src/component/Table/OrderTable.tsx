@@ -1,10 +1,9 @@
-import "./Table.css";
 import { Button, Card, Table } from "antd";
 import { Title } from "./util";
 import { SheetItem } from "./SheetTable";
 import { useEffect, useState } from "react";
 import { columns, orderData } from "./mockd_data";
-import { PlaceOrderModal } from "../PlaceOrderModal/PlaceOrderModal";
+import { OrderModal } from "../PlaceOrderModal/PlaceOrderModal";
 
 export type OrderItem = {
   key: string;
@@ -33,15 +32,12 @@ export const OrderTable = ({ selectedSheet, size }: OrderTableProp) => {
   }, [selectedSheet]);
 
   return (
-    <Card hoverable className="card-table">
+    <Card hoverable>
       <Title level={3}>{selectedSheet.sheetName}</Title>
       <Button onClick={() => setIsOpenModal(true)}>
         {data?.some((v) => v.key === "1") ? "Update" : "Order"}
       </Button>
-      <PlaceOrderModal
-        isOpenModal={isOpenModal}
-        setIsOpenModal={setIsOpenModal}
-      />
+      <OrderModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
       <Table
         columns={columns}
         dataSource={data}

@@ -2,6 +2,10 @@ aside {
   background-color: rgb(255, 255, 255) !important;
 }
 
+.ant-card-body {
+  height: 100%;
+}
+
 .layout-content {
   padding: 0 1vw;
 }

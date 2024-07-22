@@ -1,247 +1,101 @@
-import "./PlaceOrderModal.css";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import {
-  Avatar,
-  Button,
-  Card,
-  Checkbox,
-  CheckboxOptionType,
-  Divider,
-  Flex,
-  Form,
-  GetProp,
-  List,
-  Modal,
-  Typography,
-} from "antd";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Avatar, Card, Divider, Flex, List, Modal, Typography } from "antd";
+import { useCallback, useMemo, useState } from "react";
+import { CheckableCardList } from "./CheckableCardList";
 
 type PlaceOrderModalProp = {
   isOpenModal: boolean;
   setIsOpenModal: (_: boolean) => void;
 };
 
-type SelectedFood = {
+export type FoodInfo = {
   Name: string;
   Price: number;
   Size: string;
   Note: string;
 };
 
-export const PlaceOrderModal = ({
+type DiscountCoupon = {
+  title: string;
+  value: number;
+};
+
+const FoodData: FoodInfo[] = [
+  {
+    Name: "A",
+    Price: 10000,
+    Size: "",
+    Note: "",
+  },
+  {
+    Name: "B",
+    Price: 20000,
+    Size: "",
+    Note: "",
+  },
+  {
+    Name: "A",
+    Price: 10000,
+    Size: "",
+    Note: "",
+  },
+  {
+    Name: "B",
+    Price: 20000,
+    Size: "",
+    Note: "",
+  },
+  {
+    Name: "A",
+    Price: 10000,
+    Size: "",
+    Note: "",
+  },
+  {
+    Name: "B",
+    Price: 20000,
+    Size: "",
+    Note: "",
+  },
+  {
+    Name: "A",
+    Price: 10000,
+    Size: "",
+    Note: "",
+  },
+  {
+    Name: "B",
+    Price: 20000,
+    Size: "",
+    Note: "",
+  },
+];
+
+const SizeMap = new Map<string, number>([
+  ["S", 0],
+  ["M", 5000],
+  ["L", 10000],
+]);
+
+const { Text } = Typography;
+
+export const OrderModal = ({
   isOpenModal,
   setIsOpenModal,
 }: PlaceOrderModalProp) => {
-  const [selectedFoods, setSelectedFoods] = useState<SelectedFood[]>(
-    [] as SelectedFood[]
+  const [selectedFoods, setSelectedFoods] = useState<FoodInfo[]>(
+    [] as FoodInfo[]
   );
-  const { Text } = Typography;
-  const optionlists: CheckboxOptionType[] = [
-    {
-      label: (
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          }
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EllipsisOutlined key="ellipsis" />,
-          ]}
-        ></Card>
-      ),
-      value: "card-1",
-    },
-    {
-      label: (
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          }
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EllipsisOutlined key="ellipsis" />,
-          ]}
-        ></Card>
-      ),
-      value: "card-2",
-    },
-    {
-      label: (
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          }
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EllipsisOutlined key="ellipsis" />,
-          ]}
-        ></Card>
-      ),
-      value: "card-3",
-    },
-    {
-      label: (
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          }
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EllipsisOutlined key="ellipsis" />,
-          ]}
-        ></Card>
-      ),
-      value: "card-4",
-    },
-    {
-      label: (
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          }
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EllipsisOutlined key="ellipsis" />,
-          ]}
-        ></Card>
-      ),
-      value: "card-5",
-    },
-    {
-      label: (
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          }
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EllipsisOutlined key="ellipsis" />,
-          ]}
-        ></Card>
-      ),
-      value: "card-6",
-    },
-    {
-      label: (
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          }
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EllipsisOutlined key="ellipsis" />,
-          ]}
-        />
-      ),
-      value: "card-7",
-    },
-    {
-      label: (
-        <Card
-          hoverable
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            />
-          }
-          actions={[
-            <SettingOutlined key="setting" />,
-            <EllipsisOutlined key="ellipsis" />,
-          ]}
-        />
-      ),
-      value: "card-8",
-    },
-  ];
+  const onClickFoodItem = useCallback((clickedFood: FoodInfo) => {
+    console.log("checked = ", clickedFood);
+    setSelectedFoods((prev) => [...prev, clickedFood]);
+  }, []);
 
-  const data = [
-    {
-      title: "Ant Design Title 1",
-    },
-    {
-      title: "Ant Design Title 2",
-    },
-    {
-      title: "Ant Design Title 3",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-    {
-      title: "Ant Design Title 1",
-    },
-    {
-      title: "Ant Design Title 2",
-    },
-    {
-      title: "Ant Design Title 3",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-    {
-      title: "Ant Design Title 1",
-    },
-    {
-      title: "Ant Design Title 2",
-    },
-    {
-      title: "Ant Design Title 3",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-  ];
-
-  const onCheckGroupChange = (checkedValues: CheckboxOptionType[]) => {
-    setSelectedFoods(checkedValues);
-    console.log("checked = ", checkedValues);
-  };
-
+  const memoTotalBill = useMemo(
+    () => TotalBill({ title: "sale 50%", value: 0.5 }, selectedFoods),
+    [selectedFoods]
+  );
   return (
     <Modal
-      title="Place Your Order"
       centered
       width={"70%"}
       open={isOpenModal}
@@ -251,16 +105,18 @@ export const PlaceOrderModal = ({
       styles={{ body: { height: "70vh" } }}
     >
       <Flex style={{ height: "100%", gap: 10 }}>
-        <Flex flex={4} style={{ overflowY: "auto" }}>
-          <Checkbox.Group
-            options={optionlists}
-            style={{ gap: 16, justifyContent: "space-around" }}
-            onChange={onCheckGroupChange}
-          ></Checkbox.Group>
+        <Flex
+          flex={4}
+          gap={10}
+          wrap="wrap"
+          justify="space-evenly"
+          style={{ overflowY: "auto" }}
+        >
+          <CheckableCardList data={FoodData} onClick={onClickFoodItem} />
         </Flex>
         <Flex flex={3} vertical justify="space-between" gap={10}>
           <List
-            style={{ width: "100%", overflowY: "scroll" }}
+            style={{ width: "100%", overflowY: "auto" }}
             itemLayout="horizontal"
             dataSource={selectedFoods}
             renderItem={(item, index) => (
@@ -291,11 +147,20 @@ export const PlaceOrderModal = ({
               type="secondary"
               style={{ fontSize: "1.5rem", float: "right" }}
             >
-              {100000} VND
+              {memoTotalBill} VND
             </Text>
           </Card>
         </Flex>
       </Flex>
     </Modal>
   );
+};
+
+const TotalBill = (discount: DiscountCoupon, foods: FoodInfo[]) => {
+  let result: number = 0;
+  foods.forEach(
+    (food) => (result += food.Price + (SizeMap.get(food.Size) ?? 0))
+  );
+
+  return result ? result - result * discount.value : 0;
 };

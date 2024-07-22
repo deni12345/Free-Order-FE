@@ -1,6 +1,4 @@
-import "./Table.css";
-import { Card, Table, TableProps } from "antd";
-import { useEffect, useState } from "react";
+import { Card, Table } from "antd";
 import { Title } from "./util";
 import { sheetColumn, sheetData } from "./mockd_data";
 
@@ -20,9 +18,12 @@ type SheetTableProp = {
 
 export const SheetTable = ({ setSelectedSheet, size }: SheetTableProp) => {
   return (
-    <Card hoverable className="card-table">
-      <Title level={3}>Today Sheets</Title>
+    <Card hoverable>
+      <Title level={3} className="sticky-title">
+        Today Sheets
+      </Title>
       <Table
+        style={{ height: "100%" }}
         columns={sheetColumn}
         dataSource={sheetData}
         pagination={{

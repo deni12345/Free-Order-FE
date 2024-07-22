@@ -1,6 +1,7 @@
 import { AnalyticGroup } from "../../component/AnalyticCard";
 import { DetailGroup } from "../../component/SheetDetailCard";
 import { ChartCard, ChartData } from "../../component/ChartCard/ChartCard";
+import { Flex } from "antd";
 
 export const DashBoard = () => {
   const testData: ChartData[] = [
@@ -49,10 +50,10 @@ export const DashBoard = () => {
   ];
 
   return (
-    <div>
+    <Flex vertical>
       <AnalyticGroup />
       <DetailGroup />
       <ChartCard data={testData} />
-    </div>
+    </Flex>
   );
 };

@@ -15,7 +15,7 @@ export const MainLayout = () => {
           <Header style={{ padding: 0 }}>
             <BreadCrumb paths={paths} />
           </Header>
-          <Content>
+          <Content style={{ marginBottom: 10 }}>
             <Outlet />
           </Content>
         </Layout>
