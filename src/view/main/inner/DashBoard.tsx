@@ -1,6 +1,6 @@
-import { AnalyticGroup } from "../../component/AnalyticCard";
-import { DetailGroup } from "../../component/SheetDetailCard";
-import { ChartCard, ChartData } from "../../component/ChartCard/ChartCard";
+import { AnalyticGroup } from "../../../component/AnalyticCard";
+import { DetailGroup } from "../../../component/SheetDetailCard";
+import { ChartCard, ChartData } from "../../../component/ChartCard/ChartCard";
 import { Flex } from "antd";
 
 export const DashBoard = () => {

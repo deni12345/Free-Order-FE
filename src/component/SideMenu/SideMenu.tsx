@@ -7,11 +7,18 @@ import { useState } from "react";
 export type MenuProps = {
   defaultSelectedKeys?: string[] | undefined;
   theme?: MenuTheme | undefined;
+  selectedMenuItem: string;
+  setSelectedMenuItem: (_: string) => void;
 };
 
-export const SideMenu = ({ defaultSelectedKeys, theme }: MenuProps) => {
+export const SideMenu = ({
+  defaultSelectedKeys,
+  theme,
+  selectedMenuItem = "fo-dashboard",
+  setSelectedMenuItem,
+}: MenuProps) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
-  const items = SideMenuItems();
+  const items = SideMenuItems(setSelectedMenuItem);
 
   return (
     <Sider
@@ -23,7 +30,7 @@ export const SideMenu = ({ defaultSelectedKeys, theme }: MenuProps) => {
       onCollapse={(value) => setCollapsed(value)}
     >
       <Menu
-        defaultSelectedKeys={["fo-dashboard"]}
+        selectedKeys={[selectedMenuItem]}
         inlineIndent={10}
         theme="light"
         mode="inline"

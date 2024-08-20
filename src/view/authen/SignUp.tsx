@@ -1,17 +1,17 @@
-import "./SignIn.css";
+import "./SignIn";
 import { Button, Flex, Form, Input, Switch, Typography } from "antd";
-import { Background } from "../assets/Background/Background";
-import { useAuth } from "../provider/AuthProvider";
+import { Background } from "../../assets/Background/Background";
+import { useAuth } from "../../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
-export const SignIn = () => {
+export const SignUp = () => {
   const { setNewToken } = useAuth();
   const navigate = useNavigate();
   const { Title, Text } = Typography;
 
   const onSubmit = (values: any) => {
     setNewToken("this is a new token");
-    navigate("/");
+    navigate("/login");
     console.log("Received values of form: ", values);
   };
 

@@ -1,6 +1,6 @@
 import { Flex } from "antd";
-import { OrderTable } from "../../component/Table/OrderTable";
-import { SheetItem, SheetTable } from "../../component/Table/SheetTable";
+import { OrderTable } from "../../../component/Table/OrderTable";
+import { SheetItem, SheetTable } from "../../../component/Table/SheetTable";
 import { useState } from "react";
 
 export const TableView = () => {

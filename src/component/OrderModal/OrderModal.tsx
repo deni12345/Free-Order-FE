@@ -1,3 +1,4 @@
+import { OrderedItem } from "./OrderedItem";
 import { Avatar, Card, Divider, Flex, List, Modal, Typography } from "antd";
 import { useCallback, useMemo, useState } from "react";
 import { CheckableCardList } from "./CheckableCardList";
@@ -91,7 +92,7 @@ export const OrderModal = ({
   }, []);
 
   const memoTotalBill = useMemo(
-    () => TotalBill({ title: "sale 50%", value: 0.5 }, selectedFoods),
+    () => totalBill({ title: "sale 50%", value: 0.5 }, selectedFoods),
     [selectedFoods]
   );
   return (
@@ -119,19 +120,7 @@ export const OrderModal = ({
             style={{ width: "100%", overflowY: "auto" }}
             itemLayout="horizontal"
             dataSource={selectedFoods}
-            renderItem={(item, index) => (
-              <List.Item>
-                <List.Item.Meta
-                  avatar={
-                    <Avatar
-                      src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
-                    />
-                  }
-                  title={<a href="https://ant.design">{item.Name}</a>}
-                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                />
-              </List.Item>
-            )}
+            renderItem={(item, index) => <OrderedItem index={index} />}
           />
           <Card hoverable>
             <Text style={{ fontSize: "1.5rem" }}>Discount</Text>
@@ -156,7 +145,7 @@ export const OrderModal = ({
   );
 };
 
-const TotalBill = (discount: DiscountCoupon, foods: FoodInfo[]) => {
+const totalBill = (discount: DiscountCoupon, foods: FoodInfo[]) => {
   let result: number = 0;
   foods.forEach(
     (food) => (result += food.Price + (SizeMap.get(food.Size) ?? 0))

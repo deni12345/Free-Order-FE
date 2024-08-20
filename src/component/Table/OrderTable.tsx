@@ -3,7 +3,7 @@ import { Title } from "./util";
 import { SheetItem } from "./SheetTable";
 import { useEffect, useState } from "react";
 import { columns, orderData } from "./mockd_data";
-import { OrderModal } from "../PlaceOrderModal/PlaceOrderModal";
+import { OrderModal } from "../OrderModal/OrderModal";
 
 export type OrderItem = {
   key: string;

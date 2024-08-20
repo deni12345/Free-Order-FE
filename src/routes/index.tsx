@@ -5,11 +5,11 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
-import { MainLayout } from "../view/MainLayout";
-import { SignIn } from "../view/SignIn";
-import { DashBoard } from "../view/inner/DashBoard";
-import { TableView } from "../view/inner/TableView";
-import { SignUp } from "../view/SignUp";
+import { MainLayout } from "../view/main/MainLayout";
+import { SignIn } from "../view/authen/SignIn";
+import { SignUp } from "../view/authen/SignUp";
+import { DashBoard } from "../view/main/inner/DashBoard";
+import { TableView } from "../view/main/inner/TableView";
 
 const Routes = () => {
   const routesForAuthenOnly: RouteObject[] = [

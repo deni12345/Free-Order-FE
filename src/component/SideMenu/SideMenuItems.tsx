@@ -9,7 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
-export const SideMenuItems = (): MenuItem[] => {
+export const SideMenuItems = (
+  selectedMenuItem: (_: string) => void
+): MenuItem[] => {
   const navigate = useNavigate();
 
   const items: MenuItem[] = [
@@ -33,6 +35,7 @@ export const SideMenuItems = (): MenuItem[] => {
       label: "Table",
       onClick: () => {
         navigate("dashboard/table");
+        selectedMenuItem("fo-table");
       },
     },
     {
