@@ -12,7 +12,12 @@ export const DetailCard = ({
   classNames: className,
 }: DetailCardProps) => {
   return (
-    <Card hoverable style={style} className={className}>
+    <Card
+      hoverable
+      style={style}
+      className={className}
+      styles={{ body: { height: "100%" } }}
+    >
       <Flex className="analytic-flex-wrapper" gap={10}>
         <Flex vertical flex={0.65}>
           <Title className="detail-title" level={4}>

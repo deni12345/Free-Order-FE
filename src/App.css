@@ -2,11 +2,8 @@ aside {
   background-color: rgb(255, 255, 255) !important;
 }
 
-.ant-card-body {
-  height: 100%;
-}
-
 .layout-content {
+  overflow-y: auto;
   padding: 0 1vw;
 }
 

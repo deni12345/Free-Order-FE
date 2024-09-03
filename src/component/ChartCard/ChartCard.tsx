@@ -1,3 +1,4 @@
+import "./ChartCard.css";
 import {
   AreaChart,
   Area,
@@ -22,7 +23,11 @@ type ChartCardProps = {
 
 export const ChartCard = ({ data }: ChartCardProps) => {
   return (
-    <Card hoverable style={{ height: "48vh", width: "100%" }}>
+    <Card
+      hoverable
+      style={{ height: "48vh", width: "100%" }}
+      className="chart-card"
+    >
       <ResponsiveContainer width="100%">
         <AreaChart
           data={data}

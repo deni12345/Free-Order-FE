@@ -6,7 +6,7 @@ const { Text } = Typography;
 
 export const AnalyticCard = () => {
   return (
-    <Card hoverable style={{ flex: 1 }}>
+    <Card hoverable style={{ flex: 1 }} className="analytic-card">
       <Flex
         justify="space-between"
         align="center"

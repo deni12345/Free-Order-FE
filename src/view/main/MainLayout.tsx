@@ -3,12 +3,7 @@ import { Content, Header } from "antd/es/layout/layout";
 import { Outlet, useLocation } from "react-router-dom";
 import { BreadCrumb } from "../../component/BreadCrumb/BreadCrumb";
 import { Layout } from "antd";
-import { useCallback, useMemo, useState } from "react";
-
-type MemoValue = {
-  selectedMenuItem: string;
-  setSelectedMenuItem: (_: string) => void;
-};
+import { useState } from "react";
 
 export const MainLayout = () => {
   const location = useLocation();
@@ -18,7 +13,7 @@ export const MainLayout = () => {
 
   return (
     <div>
-      <Layout>
+      <Layout style={{ overflow: "hidden", height: "100vh" }}>
         <SideMenu
           selectedMenuItem={selectedMenuItem}
           setSelectedMenuItem={setSelectedMenuItem}

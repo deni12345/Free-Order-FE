@@ -1,7 +1,6 @@
 import { Button, Card, Table } from "antd";
 import { Title } from "./util";
-import { SheetItem } from "./SheetTable";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { columns, orderData } from "./mockd_data";
 import { OrderModal } from "../OrderModal/OrderModal";
 
@@ -16,31 +15,33 @@ export type OrderItem = {
 };
 
 type OrderTableProp = {
-  selectedSheet: SheetItem;
   size: number;
+  OrderItems: OrderItem[];
+  setOrderItems: React.Dispatch<React.SetStateAction<OrderItem[]>>;
 };
 
 var data: OrderItem[];
-export const OrderTable = ({ selectedSheet, size }: OrderTableProp) => {
+export const OrderTable = ({
+  setOrderItems,
+  OrderItems,
+  size,
+}: OrderTableProp) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-
-  useEffect(() => {
-    data = orderData;
-    return () => {
-      data = [];
-    };
-  }, [selectedSheet]);
 
   return (
     <Card hoverable>
-      <Title level={3}>{selectedSheet.sheetName}</Title>
+      <Title level={3}>Free Order</Title>
       <Button onClick={() => setIsOpenModal(true)}>
         {data?.some((v) => v.key === "1") ? "Update" : "Order"}
       </Button>
-      <OrderModal isOpenModal={isOpenModal} setIsOpenModal={setIsOpenModal} />
+      <OrderModal
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+        setOrderItems={setOrderItems}
+      />
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={OrderItems}
         pagination={{
           hideOnSinglePage: true,
           total: orderData.length,

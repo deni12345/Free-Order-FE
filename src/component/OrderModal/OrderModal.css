@@ -1,0 +1,9 @@
+.responsive-btn {
+    flex: 1;
+    font-size: 0.8vw;
+}
+
+.checkable-card {
+    width: 48%;
+    height: auto;
+}

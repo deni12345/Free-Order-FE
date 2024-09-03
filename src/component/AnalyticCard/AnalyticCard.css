@@ -28,3 +28,7 @@
 .analytic-flex-icon-wrapper svg path:last-child {
   fill: #4fd1c5;
 }
+
+.analytic-card>.ant-card-body {
+  height: 100%;
+}

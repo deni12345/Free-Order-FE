@@ -3,6 +3,7 @@ import { Button, Flex, Form, Input, Switch, Typography } from "antd";
 import { Background } from "../../assets/Background/Background";
 import { useAuth } from "../../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 export const SignIn = () => {
   const { setNewToken } = useAuth();
@@ -68,6 +69,7 @@ export const SignIn = () => {
             </Text>
           </Form.Item>
         </Form>
+        <Button type="primary" shape="circle" icon={<FcGoogle />} />
       </Flex>
       <Flex flex={1}>
         <Background title="Free Order" />

@@ -1,14 +1,19 @@
-import { OrderedItem } from "./OrderedItem";
-import { Avatar, Card, Divider, Flex, List, Modal, Typography } from "antd";
+import "./OrderModal.css";
+import { Text } from "../utils";
+import { OrderItemsList } from "./OrderedItemsList";
+import { CheckableCardsList } from "./CheckableCardsList";
+import { Card, Divider, Flex, Modal } from "antd";
 import { useCallback, useMemo, useState } from "react";
-import { CheckableCardList } from "./CheckableCardList";
+import { OrderItem } from "../Table/OrderTable";
 
 type PlaceOrderModalProp = {
   isOpenModal: boolean;
   setIsOpenModal: (_: boolean) => void;
+  setOrderItems: React.Dispatch<React.SetStateAction<OrderItem[]>>;
 };
 
 export type FoodInfo = {
+  index?: number;
   Name: string;
   Price: number;
   Size: string;
@@ -77,19 +82,40 @@ const SizeMap = new Map<string, number>([
   ["L", 10000],
 ]);
 
-const { Text } = Typography;
-
 export const OrderModal = ({
   isOpenModal,
   setIsOpenModal,
+  setOrderItems,
 }: PlaceOrderModalProp) => {
   const [selectedFoods, setSelectedFoods] = useState<FoodInfo[]>(
     [] as FoodInfo[]
   );
-  const onClickFoodItem = useCallback((clickedFood: FoodInfo) => {
-    console.log("checked = ", clickedFood);
-    setSelectedFoods((prev) => [...prev, clickedFood]);
+  const addFoodItem = useCallback((index: number, value: FoodInfo) => {
+    setSelectedFoods((prev) => [...prev, { ...value, index } as FoodInfo]);
   }, []);
+
+  const removeSelectedFood = useCallback((index: number) => {
+    setSelectedFoods((prev: FoodInfo[]) =>
+      prev.filter((_, prev_index) => prev_index !== index)
+    );
+  }, []);
+
+  const onSubmit = () => {
+    let orderItems: OrderItem[] = [
+      {
+        key: "",
+        name: "",
+        order: "",
+        size: "",
+        amount: 0,
+        note: [],
+        cash: 0,
+      },
+    ];
+
+    setIsOpenModal(false);
+    setOrderItems(orderItems);
+  };
 
   const memoTotalBill = useMemo(
     () => totalBill({ title: "sale 50%", value: 0.5 }, selectedFoods),
@@ -101,43 +127,33 @@ export const OrderModal = ({
       width={"70%"}
       open={isOpenModal}
       okText={<Text style={{ color: "white" }}>Place An Order Now</Text>}
-      onOk={() => setIsOpenModal(false)}
+      onOk={() => onSubmit()}
       onCancel={() => setIsOpenModal(false)}
-      styles={{ body: { height: "70vh" } }}
+      styles={{ body: { height: "70vh", padding: 12 } }}
     >
-      <Flex style={{ height: "100%", gap: 10 }}>
+      <Flex style={{ height: "100%", gap: 8 }}>
         <Flex
+          wrap
           flex={4}
           gap={10}
-          wrap="wrap"
-          justify="space-evenly"
+          justify="center"
           style={{ overflowY: "auto" }}
         >
-          <CheckableCardList data={FoodData} onClick={onClickFoodItem} />
+          <CheckableCardsList data={FoodData} onClick={addFoodItem} />
         </Flex>
         <Flex flex={3} vertical justify="space-between" gap={10}>
-          <List
-            style={{ width: "100%", overflowY: "auto" }}
-            itemLayout="horizontal"
-            dataSource={selectedFoods}
-            renderItem={(item, index) => <OrderedItem index={index} />}
+          <OrderItemsList
+            selectedFoods={selectedFoods}
+            removeSelectedFood={removeSelectedFood}
           />
           <Card hoverable>
-            <Text style={{ fontSize: "1.5rem" }}>Discount</Text>
-            <Text
-              type="secondary"
-              style={{ fontSize: "1.5rem", float: "right" }}
-            >
+            <Text>Discount</Text>
+            <Text type="secondary" style={{ float: "right" }}>
               {0}
             </Text>
             <Divider />
-            <Text style={{ fontSize: "1.5rem" }}>Total</Text>
-            <Text
-              type="secondary"
-              style={{ fontSize: "1.5rem", float: "right" }}
-            >
-              {memoTotalBill} VND
-            </Text>
+            <Text>Total</Text>
+            <Text style={{ float: "right" }}>{memoTotalBill} VND</Text>
           </Card>
         </Flex>
       </Flex>
@@ -153,3 +169,5 @@ const totalBill = (discount: DiscountCoupon, foods: FoodInfo[]) => {
 
   return result ? result - result * discount.value : 0;
 };
+
+const buildOrderItems = (selectedFood: FoodInfo[]) => {};

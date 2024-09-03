@@ -1,4 +1,5 @@
-.ant-card-body {
+.detail-card>.ant-card-body {
+  height: 100%;
   padding: 15px 15px !important;
 }
 
@@ -20,11 +21,11 @@
   gap: 5px;
 }
 
-.detail-flex-icon-wrapper > svg {
+.detail-flex-icon-wrapper>svg {
   fill: #fff;
 }
 
-.detail-flex-icon-wrapper > span {
+.detail-flex-icon-wrapper>span {
   font-size: x-large;
   font-weight: 500;
   color: #fff;
@@ -36,13 +37,11 @@ button {
 
 .image-card {
   background: url("../../assets/cozy_coffee.jpg"),
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(0, 0, 0, 0.4) 1%,
       rgba(0, 0, 0, 0.4) 4%,
       rgba(0, 0, 0, 0.6) 35%,
-      rgba(0, 0, 0, 0) 60%
-    );
+      rgba(0, 0, 0, 0) 60%);
   background-blend-mode: color;
   background-size: cover;
 }

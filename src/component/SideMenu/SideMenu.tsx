@@ -12,8 +12,6 @@ export type MenuProps = {
 };
 
 export const SideMenu = ({
-  defaultSelectedKeys,
-  theme,
   selectedMenuItem = "fo-dashboard",
   setSelectedMenuItem,
 }: MenuProps) => {
@@ -22,9 +20,6 @@ export const SideMenu = ({
 
   return (
     <Sider
-      style={{
-        overflow: "auto",
-      }}
       collapsible
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}

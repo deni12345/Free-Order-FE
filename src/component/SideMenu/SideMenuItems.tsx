@@ -28,6 +28,10 @@ export const SideMenuItems = (
       key: "fo-dashboard",
       icon: <Icon component={AiFillHome} />,
       label: "DashBoard",
+      onClick: () => {
+        navigate("/");
+        selectedMenuItem("fo-dashboard");
+      },
     },
     {
       key: "fo-table",

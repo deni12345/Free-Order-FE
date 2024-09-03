@@ -19,9 +19,7 @@ type SheetTableProp = {
 export const SheetTable = ({ setSelectedSheet, size }: SheetTableProp) => {
   return (
     <Card hoverable>
-      <Title level={3} className="sticky-title">
-        Today Sheets
-      </Title>
+      <Title level={3}>Today Sheets</Title>
       <Table
         style={{ height: "100%" }}
         columns={sheetColumn}
