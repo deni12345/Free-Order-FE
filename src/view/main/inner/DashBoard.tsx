@@ -50,7 +50,7 @@ export const DashBoard = () => {
   ];
 
   return (
-    <Flex vertical>
+    <Flex vertical gap={12} style={{ height: "100%" }}>
       <AnalyticGroup />
       <DetailGroup />
       <ChartCard data={testData} />

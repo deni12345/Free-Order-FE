@@ -3,7 +3,7 @@ import { AnalyticCard } from ".";
 
 export const AnalyticGroup = () => {
   return (
-    <Flex gap={"1vw"}>
+    <Flex gap={"1vw"} flex={0.5}>
       <AnalyticCard />
       <AnalyticCard />
       <AnalyticCard />

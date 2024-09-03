@@ -23,11 +23,7 @@ type ChartCardProps = {
 
 export const ChartCard = ({ data }: ChartCardProps) => {
   return (
-    <Card
-      hoverable
-      style={{ height: "48vh", width: "100%" }}
-      className="chart-card"
-    >
+    <Card hoverable className="chart-card" style={{ flex: 1.5 }}>
       <ResponsiveContainer width="100%">
         <AreaChart
           data={data}

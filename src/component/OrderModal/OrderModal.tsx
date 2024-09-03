@@ -5,10 +5,12 @@ import { CheckableCardsList } from "./CheckableCardsList";
 import { Card, Divider, Flex, Modal } from "antd";
 import { useCallback, useMemo, useState } from "react";
 import { OrderItem } from "../Table/OrderTable";
+import { OrderedItem } from "./OrderedItem";
 
 type PlaceOrderModalProp = {
   isOpenModal: boolean;
   setIsOpenModal: (_: boolean) => void;
+  orderItems: OrderItem[];
   setOrderItems: React.Dispatch<React.SetStateAction<OrderItem[]>>;
 };
 
@@ -86,6 +88,7 @@ export const OrderModal = ({
   isOpenModal,
   setIsOpenModal,
   setOrderItems,
+  orderItems,
 }: PlaceOrderModalProp) => {
   const [selectedFoods, setSelectedFoods] = useState<FoodInfo[]>(
     [] as FoodInfo[]
@@ -114,7 +117,7 @@ export const OrderModal = ({
     ];
 
     setIsOpenModal(false);
-    setOrderItems(orderItems);
+    setOrderItems(buildOrderItems(selectedFoods));
   };
 
   const memoTotalBill = useMemo(
@@ -170,4 +173,14 @@ const totalBill = (discount: DiscountCoupon, foods: FoodInfo[]) => {
   return result ? result - result * discount.value : 0;
 };
 
-const buildOrderItems = (selectedFood: FoodInfo[]) => {};
+const buildOrderItems = (selectedFood: FoodInfo[]) => {
+  return selectedFood.map<OrderItem>((food, index) => ({
+    key: index.toString(),
+    name: food.Name,
+    order: "",
+    size: food.Size,
+    amount: 1,
+    note: [],
+    cash: food.Price,
+  }));
+};

@@ -38,6 +38,7 @@ export const OrderTable = ({
         isOpenModal={isOpenModal}
         setIsOpenModal={setIsOpenModal}
         setOrderItems={setOrderItems}
+        orderItems={OrderItems}
       />
       <Table
         columns={columns}
