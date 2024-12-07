@@ -3,10 +3,10 @@ import MilkTea from "../../assets/Brown-sugar-milk-tea-recipe-boba.jpg";
 import { IoIosRemove } from "react-icons/io";
 import { Text } from "../utils";
 import React from "react";
-import { FoodInfo } from "./OrderModal";
+import { Food } from "../share/types/food";
 
 type OrderedItemProp = {
-  value: FoodInfo;
+  value: Food;
   index: number;
   removeSelectedFood: () => void;
 };
@@ -24,7 +24,7 @@ export function OrderedItem({
         style={{ minHeight: 75, width: "auto" }}
       />
       <Space direction="vertical" style={{ flex: 3 }} size={0}>
-        <Text>Cold Drink ${value.index}</Text>
+        <Text>Cold Drink ${value.key}</Text>
         <Text type="secondary">Cold Drindas dsadsdsa</Text>
         <Space direction="horizontal">
           <Button className="responsive-btn">100.000 VND</Button>

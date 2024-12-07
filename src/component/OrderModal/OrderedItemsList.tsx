@@ -1,10 +1,10 @@
 import { List } from "antd";
 import React, { useMemo } from "react";
 import { OrderedItem } from "./OrderedItem";
-import { FoodInfo } from "./OrderModal";
+import { Food } from "../share/types/food";
 
 type OrderItemsListProp = {
-  selectedFoods: FoodInfo[];
+  selectedFoods: Food[];
   removeSelectedFood: (index: number) => void;
 };
 

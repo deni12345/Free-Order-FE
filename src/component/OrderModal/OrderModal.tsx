@@ -5,7 +5,7 @@ import { CheckableCardsList } from "./CheckableCardsList";
 import { Card, Divider, Flex, Modal } from "antd";
 import { useCallback, useMemo, useState } from "react";
 import { OrderItem } from "../Table/OrderTable";
-import { OrderedItem } from "./OrderedItem";
+import { Food } from "../share/types/food";
 
 type PlaceOrderModalProp = {
   isOpenModal: boolean;
@@ -14,67 +14,20 @@ type PlaceOrderModalProp = {
   setOrderItems: React.Dispatch<React.SetStateAction<OrderItem[]>>;
 };
 
-export type FoodInfo = {
-  index?: number;
-  Name: string;
-  Price: number;
-  Size: string;
-  Note: string;
-};
-
 type DiscountCoupon = {
   title: string;
   value: number;
 };
 
-const FoodData: FoodInfo[] = [
+const FoodData: Food[] = [
   {
-    Name: "A",
-    Price: 10000,
-    Size: "",
-    Note: "",
-  },
-  {
-    Name: "B",
-    Price: 20000,
-    Size: "",
-    Note: "",
-  },
-  {
-    Name: "A",
-    Price: 10000,
-    Size: "",
-    Note: "",
-  },
-  {
-    Name: "B",
-    Price: 20000,
-    Size: "",
-    Note: "",
-  },
-  {
-    Name: "A",
-    Price: 10000,
-    Size: "",
-    Note: "",
-  },
-  {
-    Name: "B",
-    Price: 20000,
-    Size: "",
-    Note: "",
-  },
-  {
-    Name: "A",
-    Price: 10000,
-    Size: "",
-    Note: "",
-  },
-  {
-    Name: "B",
-    Price: 20000,
-    Size: "",
-    Note: "",
+    name: "A",
+    price: 10000,
+    size: "",
+    note: [],
+    key: "",
+    orderBy: "",
+    amount: 0,
   },
 ];
 
@@ -90,32 +43,18 @@ export const OrderModal = ({
   setOrderItems,
   orderItems,
 }: PlaceOrderModalProp) => {
-  const [selectedFoods, setSelectedFoods] = useState<FoodInfo[]>(
-    [] as FoodInfo[]
-  );
-  const addFoodItem = useCallback((index: number, value: FoodInfo) => {
-    setSelectedFoods((prev) => [...prev, { ...value, index } as FoodInfo]);
+  const [selectedFoods, setSelectedFoods] = useState<Food[]>([] as Food[]);
+  const addFoodItem = useCallback((index: number, value: Food) => {
+    setSelectedFoods((prev) => [...prev, { ...value, index } as Food]);
   }, []);
 
   const removeSelectedFood = useCallback((index: number) => {
-    setSelectedFoods((prev: FoodInfo[]) =>
+    setSelectedFoods((prev: Food[]) =>
       prev.filter((_, prev_index) => prev_index !== index)
     );
   }, []);
 
   const onSubmit = () => {
-    let orderItems: OrderItem[] = [
-      {
-        key: "",
-        name: "",
-        order: "",
-        size: "",
-        amount: 0,
-        note: [],
-        cash: 0,
-      },
-    ];
-
     setIsOpenModal(false);
     setOrderItems(buildOrderItems(selectedFoods));
   };
@@ -164,23 +103,23 @@ export const OrderModal = ({
   );
 };
 
-const totalBill = (discount: DiscountCoupon, foods: FoodInfo[]) => {
+const totalBill = (discount: DiscountCoupon, foods: Food[]) => {
   let result: number = 0;
   foods.forEach(
-    (food) => (result += food.Price + (SizeMap.get(food.Size) ?? 0))
+    (food) => (result += food.price + (SizeMap.get(food.size) ?? 0))
   );
 
   return result ? result - result * discount.value : 0;
 };
 
-const buildOrderItems = (selectedFood: FoodInfo[]) => {
+const buildOrderItems = (selectedFood: Food[]) => {
   return selectedFood.map<OrderItem>((food, index) => ({
     key: index.toString(),
-    name: food.Name,
+    name: food.name,
     order: "",
-    size: food.Size,
+    size: food.size,
     amount: 1,
     note: [],
-    cash: food.Price,
+    cash: food.price,
   }));
 };
