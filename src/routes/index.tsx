@@ -10,6 +10,7 @@ import { SignIn } from "../view/authen/SignIn";
 import { SignUp } from "../view/authen/SignUp";
 import { DashBoard } from "../view/main/inner/DashBoard";
 import { TableView } from "../view/main/inner/TableView";
+import { lazy } from "react";
 
 const Routes = () => {
   const routesForAuthenOnly: RouteObject[] = [
